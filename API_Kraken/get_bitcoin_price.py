@@ -16,5 +16,5 @@ def get_price(data_file):
     with open(data_file, 'a') as file:
         file.write('\n' + repr(price) + ' USD, ' + repr(date))
 
-if __name__ == 'main':
+if __name__ == '__main__':
     get_price()
