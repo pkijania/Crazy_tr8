@@ -12,4 +12,3 @@ except Exception as e:
 
 with open("D:/Programy/Github/Aplications/API_Kraken/bitcoin_price.txt", "a") as file:
     file.write('\n' + repr(price) + ' USD, ' + repr(date))
-    file.close()
