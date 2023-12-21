@@ -5,7 +5,8 @@ import time
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
-def get_price(data_file):
+@click.option('--break_time', help = 'Time of a break between prices.')
+def get_price(data_file, break_time):
     with open(data_file, 'a') as file:
         file.seek(0)
         file.truncate()
@@ -15,15 +16,17 @@ def get_price(data_file):
             get_request = requests.get('https://api.kraken.com/0/public/Ticker?pair=XBTUSD')
             price = get_request.json()['result']['XXBTZUSD']['a'][0]
             date = datetime.datetime.now().strftime('%c')
-            value = (price + ' USD ')
             print("Bitcoin price for: " + date + " is: ")
-            print(value)
-            print("Waiting 5 seconds for next fetch.\n")
+            print(price + ' USD ')
+            print("Waiting " + break_time + " seconds for next fetch.\n")
         except Exception as e:
             raise Exception(f'An error has occured due to: {e}')
         with open(data_file, 'a') as file:
             file.write('\n' + repr(price) + ' USD, ' + repr(date))
-        time.sleep(5)
+        if break_time is None:
+            time.sleep(int(5))
+        else:
+            time.sleep(int(break_time))
 
 if __name__ == '__main__':
     get_price()
