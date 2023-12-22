@@ -3,10 +3,6 @@ import datetime
 import click
 import time
 
-@click.command()
-@click.option('--data_file', help = 'Path to datafile.')
-@click.option('--break_time', default = 5, help = 'Time of a break between prices.')
-
 def get_price():
     try:
         get_request = requests.get('https://api.kraken.com/0/public/Ticker?pair=XBTUSD')
@@ -16,9 +12,11 @@ def get_price():
         raise Exception(f'An error has occured due to: {e}')
     return price, date
 
-def append_data_file(data_file, get_price):
+price, date = get_price()
+
+def append_data_file(data_file, price, date):
     with open(data_file, 'a') as file:
-        file.write('\n' + get_price)
+        file.write('\n' + price + date)
 
 def remove_data_file(data_file):
     with open(data_file, 'a') as file:
@@ -26,10 +24,15 @@ def remove_data_file(data_file):
         file.truncate()
         file.write("Bitcoin prices for: " + datetime.datetime.now().strftime('%x'))
 
+@click.command()
+@click.option('--data_file', help = 'Path to datafile.')
+@click.option('--break_time', default = 5, help = 'Time of a break between prices.')
+
 def main(break_time, data_file):
     remove_data_file(data_file)
+    price, date = get_price()
     while True:
         print(get_price())
-        append_data_file(data_file)
+        append_data_file(data_file, price, date)
         print("Waiting " + str(break_time) + " seconds for next fetch.\n")
         time.sleep(int(break_time))
