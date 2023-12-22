@@ -1,20 +1,39 @@
 import requests
 import datetime
 import click
+import time
 
-@click.command()
-@click.option('--data_file', help = 'Path to datafile.')
-def get_price(data_file):
+def get_price():
     try:
         get_request = requests.get('https://api.kraken.com/0/public/Ticker?pair=XBTUSD')
         price = get_request.json()['result']['XXBTZUSD']['a'][0]
         date = datetime.datetime.now().strftime('%c')
-        value = (price + ' USD, ' + date)
-        print(value)
     except Exception as e:
         raise Exception(f'An error has occured due to: {e}')
-    with open(data_file, 'a') as file:
-        file.write('\n' + repr(price) + ' USD, ' + repr(date))
+    return price, date
 
-if __name__ == '__main__':
-    get_price()
+def append_data_file(data_file, price, date):
+    with open(data_file, 'a') as file:
+        file.write('\n' + price + ' USD, ' + date)
+
+def remove_data_file(data_file):
+    with open(data_file, 'w') as file:
+        file.seek(0)
+        file.truncate()
+        file.write("Bitcoin prices for: " + datetime.datetime.now().strftime('%x'))
+
+@click.command()
+@click.option('--data_file', help = 'Path to datafile.')
+@click.option('--break_time', default = 5, help = 'Time of a break between prices.')
+def main(break_time, data_file):
+    remove_data_file(data_file)
+    while True:
+        price, date = get_price()
+        append_data_file(data_file, price, date)
+        print(f"Price of Bitcoin for: {date}")
+        print(f"{price} USD")
+        print("Waiting " + str(break_time) + " seconds for next fetch.\n")
+        time.sleep(int(break_time))
+
+if __name__ == "__main__":
+    main()
