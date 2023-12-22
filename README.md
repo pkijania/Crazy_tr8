@@ -4,4 +4,10 @@ This repository consists of simple aplications written in python
 
 Print the current price of bitcoin and paste it into "bitcoin_price.txt" file
 
+Code
+
 [Solution](API_KRAKEN/get_bitcoin_price.py)
+
+Txt file
+
+[Solution](API_KRAKEN/bitcoin_price.txt)

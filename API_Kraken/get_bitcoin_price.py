@@ -14,10 +14,10 @@ def get_price():
 
 def append_data_file(data_file, price, date):
     with open(data_file, 'a') as file:
-        file.write('\n' + price + date)
+        file.write('\n' + price + ' USD, ' + date)
 
 def remove_data_file(data_file):
-    with open(data_file, 'a') as file:
+    with open(data_file, 'w') as file:
         file.seek(0)
         file.truncate()
         file.write("Bitcoin prices for: " + datetime.datetime.now().strftime('%x'))
@@ -30,6 +30,10 @@ def main(break_time, data_file):
     while True:
         price, date = get_price()
         append_data_file(data_file, price, date)
-        print(f'Price of Bitcoin: {price} for {date}')
+        print(f"Price of Bitcoin for: {date}")
+        print(f"{price} USD")
         print("Waiting " + str(break_time) + " seconds for next fetch.\n")
         time.sleep(int(break_time))
+
+if __name__ == "__main__":
+    main()
