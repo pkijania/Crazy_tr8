@@ -27,12 +27,11 @@ def remove_data_file(data_file):
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
-
 def main(break_time, data_file):
     remove_data_file(data_file)
-    price, date = get_price()
     while True:
-        print(get_price())
+        price, date = get_price()
         append_data_file(data_file, price, date)
+        print(f'Price of Bitcoin: {price} for {date}')
         print("Waiting " + str(break_time) + " seconds for next fetch.\n")
         time.sleep(int(break_time))
