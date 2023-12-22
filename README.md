@@ -2,7 +2,7 @@ This repository consists of simple aplications written in python
 
 ### Get price of bitcoin
 
-Print the current price of bitcoin and paste it into "bitcoin_price.txt" file
+Print the current price of bitcoin in terminal and paste it into "bitcoin_price.txt" file every n seconds
 
 Code
 
