@@ -12,8 +12,6 @@ def get_price():
         raise Exception(f'An error has occured due to: {e}')
     return price, date
 
-price, date = get_price()
-
 def append_data_file(data_file, price, date):
     with open(data_file, 'a') as file:
         file.write('\n' + price + date)
