@@ -1,7 +1,6 @@
-import requests
-import datetime
-import click
-import time
+import requests, datetime, click, time, logging
+
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 def get_price():
     try:
@@ -30,9 +29,9 @@ def main(break_time, data_file):
     while True:
         price, date = get_price()
         append_data_file(data_file, price, date)
-        print(f"Price of Bitcoin for: {date}")
-        print(f"{price} USD")
-        print("Waiting " + str(break_time) + " seconds for next fetch.\n")
+        logging.info(f"Price of Bitcoin for: {date}")
+        logging.info(f"{price} USD")
+        logging.info("Waiting " + str(break_time) + " seconds for next fetch.\n")
         time.sleep(int(break_time))
 
 if __name__ == "__main__":
