@@ -8,6 +8,6 @@ Code
 
 [Solution](API_Kraken/get_bitcoin_price.py)
 
-Txt file
+CSV file
 
-[Solution](API_Kraken/bitcoin_price.txt)
+[Solution](API_Kraken/bitcoin_price.csv)
