@@ -14,9 +14,9 @@ def show_info(break_time, price):
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(break_time, data_file):
     data_manager = Data_manager(data_file)
-    value_fetcher = Value_fetcher()
     data_manager.remove_data_file()
     while True:
+        value_fetcher = Value_fetcher()
         price = value_fetcher.get_price()
         date = value_fetcher.get_date()
         data_manager.append_data_file(price, date)

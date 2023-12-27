@@ -7,7 +7,7 @@ class Value_fetcher:
         
     def get_price(self):
         try:
-            return  self.get_request.json()['ticker']['rate']
+            return self.get_request.json()['ticker']['rate']
         except Exception as e:
             raise Exception(f'An error has occured due to: {e}')
 

@@ -8,6 +8,10 @@ Code
 
 [Solution](API_Zonda/get_bitcoin_price.py)
 
+[Solution](API_Zonda/fetch_values.py)
+
+[Solution](API_Zonda/manage_data.py)
+
 CSV file
 
 [Solution](API_Zonda/bitcoin_price.csv)
