@@ -11,7 +11,6 @@ class Value_fetcher:
         except Exception as e:
             raise Exception(f'An error has occured due to: {e}')
 
-
     def get_date(self):
         try:
             return self.get_request.json()['ticker']['time']
