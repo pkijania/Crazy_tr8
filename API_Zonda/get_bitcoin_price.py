@@ -1,13 +1,8 @@
-import datetime, click, time, logging
+import click, time, queue
 from manage_data import Data_manager
 from fetch_values import Value_fetcher
-
-def show_info(break_time, price):
-    logging.basicConfig(level=logging.INFO, format='%(message)s')
-    date = datetime.datetime.now().strftime('%c')
-    logging.info(f"Price of Bitcoin for: {date}")
-    logging.info(f"{price}")
-    logging.info("Waiting " + str(break_time) + " seconds for next fetch.\n")
+from show_info_in_terminal import Terminal
+from calculate_ema import Ema_calculator
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
@@ -15,12 +10,24 @@ def show_info(break_time, price):
 def main(break_time, data_file):
     data_manager = Data_manager(data_file)
     data_manager.remove_data_file()
+    queue_of_prices = queue.Queue(10)
     while True:
         value_fetcher = Value_fetcher()
         price = value_fetcher.get_price()
         date = value_fetcher.get_date()
         data_manager.append_data_file(price, date)
-        show_info(break_time, price)
+
+        outcome = Ema_calculator.create_list_of_prices(queue_of_prices, price)
+        print(outcome)
+
+        converted_outcome = Ema_calculator.convert_queue_to_list(outcome)
+        print(converted_outcome)
+
+        ema = Ema_calculator.calculate_ema(converted_outcome, 5)
+        print(ema)
+
+        terminal = Terminal(break_time, price)
+        terminal.show_info()
         time.sleep(int(break_time))
 
 if __name__ == "__main__":
