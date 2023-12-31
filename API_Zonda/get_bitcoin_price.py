@@ -1,4 +1,4 @@
-import click, time, queue
+import click, time, queue, math
 from manage_data import Data_manager
 from fetch_values import Value_fetcher
 from show_info_in_terminal import Terminal
@@ -14,7 +14,7 @@ def main(break_time, data_file):
     queue_of_prices = queue.Queue(10)
 
     while True:
-        # Fetch current Bitcoin price and unix time and put it in 'bitcoin_price.csv'
+        # Fetch current Bitcoin price and unix time from 'zondacrypto' and put it in a 'bitcoin_price.csv' file
         value_fetcher = Value_fetcher()
         price = value_fetcher.get_price()
         date = value_fetcher.get_date()

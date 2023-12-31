@@ -1,4 +1,4 @@
-import pytest, queue, math
+import pytest, queue
 
 class Ema_calculator:
     def create_queue_of_prices(queue_of_prices, price):
@@ -27,6 +27,6 @@ class Ema_calculator:
         # determines at which element we start calculating ema 
         start_ema = int((days - 1) / 2)
         ema = float(sum(list_of_prices[:start_ema])) / start_ema
-        for price in list_of_prices[start_ema-1:-1]:
+        for price in list_of_prices[start_ema - 1:-1]:
             ema = (price * alpha) + ema * (1.0 - alpha)
         return ema
