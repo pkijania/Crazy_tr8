@@ -23,7 +23,7 @@ class Ema_calculator:
             raise Exception(f'An error has occured due to: {e}')
 
     def calculate_ema(list_of_prices, days):
-        if len(list_of_prices) >= days/2:
+        if len(list_of_prices) >= days:
             alpha = (2.0 / (1 + float(days)))
             # determines at which element we start calculating ema 
             start_ema = int((days - 1) / 2)
