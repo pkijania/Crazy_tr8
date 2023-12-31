@@ -6,9 +6,6 @@ Print the current price of bitcoin in terminal and paste it into "bitcoin_price.
 
 Code
 
-<<<<<<< Updated upstream
-[Solution](API_Kraken/get_bitcoin_price.py)
-=======
 Main file
 
 [Solution](API_Zonda/get_bitcoin_price.py)
@@ -20,7 +17,6 @@ Fetch values
 Manage data
 
 [Solution](API_Zonda/manage_data.py)
->>>>>>> Stashed changes
 
 Show info in terminal
 
