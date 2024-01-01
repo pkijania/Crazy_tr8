@@ -2,7 +2,7 @@ import click, time, queue, math
 from manage_data import Data_manager
 from fetch_values import Value_fetcher
 from show_info_in_terminal import Terminal
-from calculate_ema import Ema_calculator
+from calculate_ema import Ema_calculator, List_of_prices_constructor
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
@@ -21,8 +21,8 @@ def main(break_time, data_file):
         data_manager.append_data_file(price, date)
 
         # Put current Bitcoin price in a queue, convert it to a list and count ema
-        outcome = Ema_calculator.create_queue_of_prices(queue_of_prices, price)
-        converted_outcome = Ema_calculator.convert_queue_to_list(outcome)
+        outcome = List_of_prices_constructor.create_queue_of_prices(queue_of_prices, price)
+        converted_outcome = List_of_prices_constructor.convert_queue_to_list(outcome)
         ema = Ema_calculator.calculate_ema(converted_outcome, 5)
 
         # Show all the information in a terminal
