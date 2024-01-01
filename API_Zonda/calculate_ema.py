@@ -1,6 +1,6 @@
-import pytest, queue
+import pytest
 
-class Ema_calculator:
+class Constructors:
     def create_queue_of_prices(queue_of_prices, price):
         try:
             if queue_of_prices.full():
@@ -22,12 +22,15 @@ class Ema_calculator:
         except Exception as e:
             raise Exception(f'An error has occured due to: {e}')
 
+class Ema_calculator:
     def calculate_ema(list_of_prices, days):
-        if len(list_of_prices) >= days:
             alpha = (2.0 / (1 + float(days)))
             # determines at which element we start calculating ema 
             start_ema = int((days - 1) / 2)
             ema = float(sum(list_of_prices[:start_ema])) / start_ema
-            for price in list_of_prices[start_ema - 1:-1]:
-                ema = (price * alpha) + ema * (1.0 - alpha)
-            return ema
+            if len(list_of_prices) >= days:
+                for price in list_of_prices[start_ema - 1:-1]:
+                    ema = (price * alpha) + ema * (1.0 - alpha)
+                return ema
+            else:
+                return 0
