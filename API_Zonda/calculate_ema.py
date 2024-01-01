@@ -24,13 +24,14 @@ class Constructors:
 
 class Ema_calculator:
     def calculate_ema(list_of_prices, days):
-            alpha = (2.0 / (1 + float(days)))
-            # determines at which element we start calculating ema 
-            start_ema = int((days - 1) / 2)
-            ema = float(sum(list_of_prices[:start_ema])) / start_ema
-            if len(list_of_prices) >= days:
-                for price in list_of_prices[start_ema - 1:-1]:
-                    ema = (price * alpha) + ema * (1.0 - alpha)
-                return ema
-            else:
-                return 0
+        alpha = (2.0 / (1 + float(days)))
+        list_of_ema = []
+        start_ema = int((days - 1) / 2)
+        sma = float(sum(list_of_prices[:start_ema])) / start_ema
+        if len(list_of_prices) >= days:
+            for price in list_of_prices[start_ema - 1:-1]:
+                ema = (price * alpha) + sma * (1.0 - alpha)
+                list_of_ema.append(ema)
+            return list_of_ema
+        else:
+            return 0
