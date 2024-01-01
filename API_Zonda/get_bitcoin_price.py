@@ -1,4 +1,4 @@
-import click, time, queue, math
+import click, time, queue
 from manage_data import Data_manager
 from fetch_values import Value_fetcher
 from show_info_in_terminal import Terminal
