@@ -4,7 +4,7 @@ class Terminal:
     def __init__(self, break_time, price, ema):
         self.break_time = break_time
         self.price = price
-        self.ema = ema
+        self.ema = str(ema)
 
     def show_info(self):
         logging.basicConfig(level=logging.INFO, format='%(message)s')
