@@ -1,6 +1,6 @@
 import requests
 
-class Value_fetcher:
+class ValueFetcher:
     def __init__(self):
         get_request = requests.get('https://api.zondacrypto.exchange/rest/trading/ticker/BTC-PLN')
         self.get_request = get_request

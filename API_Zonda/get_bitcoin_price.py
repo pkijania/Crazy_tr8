@@ -1,30 +1,28 @@
-import click, time, queue
-from manage_data import Data_manager
-from fetch_values import Value_fetcher
+import click, time
+from manage_data import DataManager
+from fetch_values import ValueFetcher
 from show_info_in_terminal import Terminal
-from calculate_ema import Ema_calculator
-from calculate_ema import Constructors
+from calculate_ema import EmaCalculcator
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(break_time, data_file):
     # Clear all data from 'bitcoin_price.csv' and creat a queue
-    data_manager = Data_manager(data_file)
+    data_manager = DataManager(data_file)
     data_manager.remove_data_file()
-    queue_of_prices = queue.Queue(10)
+    ema_calc = EmaCalculcator(26)
 
     while True:
         # Fetch current Bitcoin price and unix time from 'zondacrypto' and put it in a 'bitcoin_price.csv' file
-        value_fetcher = Value_fetcher()
+        value_fetcher = ValueFetcher()
         price = value_fetcher.get_price()
         date = value_fetcher.get_date()
         data_manager.append_data_file(price, date)
 
-        # Put current Bitcoin price in a queue, convert it to a list and count ema
-        outcome = Constructors.create_queue_of_prices(queue_of_prices, price)
-        converted_outcome = Constructors.convert_queue_to_list(outcome)
-        ema = Ema_calculator.calculate_ema(converted_outcome, 5)
+        # Calculate ema
+        ema_calc.recalculate(price)
+        ema = ema_calc.get_ema()
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema)
