@@ -8,11 +8,10 @@ from calculate_ema import EmaCalculcator
 @click.option('--data_file', help = 'Path to datafile.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(break_time, data_file):
-    # Clear all data from 'bitcoin_price.csv' and creat a queue
+    # Clear all data from 'bitcoin_price.csv'
     data_manager = DataManager(data_file)
     data_manager.remove_data_file()
-    ema_calc = EmaCalculcator(26)
-
+    ema_calculator = EmaCalculcator(26)
     while True:
         # Fetch current Bitcoin price and unix time from 'zondacrypto' and put it in a 'bitcoin_price.csv' file
         value_fetcher = ValueFetcher()
@@ -21,8 +20,8 @@ def main(break_time, data_file):
         data_manager.append_data_file(price, date)
 
         # Calculate ema
-        ema_calc.recalculate(price)
-        ema = ema_calc.get_ema()
+        ema_calculator.recalculate(price)
+        ema = ema_calculator.get_ema()
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema)

@@ -21,6 +21,6 @@ class EmaCalculcator:
         else:
             self.bootstrap_queue.append(float(price))
             self.calculate_simple_average()
-          
+
     def get_ema(self):
         return self.ema
