@@ -1,6 +1,6 @@
 import csv
 
-class Data_manager:
+class DataManager:
     def __init__(self, data_file):
         self.data_file = data_file
 
