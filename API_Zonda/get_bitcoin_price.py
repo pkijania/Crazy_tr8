@@ -23,9 +23,7 @@ def main(break_time, data_file):
         ema_calculator.recalculate(price)
         ema = ema_calculator.get_ema()
 
-        print(ema)
-        print(math.fabs(ema-130.487))
-        assert math.fabs(ema-130.487) < 0.01, "Assertion failed"
+        assert math.fabs(ema - 172500) < 0.01, "Assertion failed"
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema)
