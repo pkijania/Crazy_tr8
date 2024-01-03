@@ -1,4 +1,4 @@
-import click, time
+import click, time, math
 from manage_data import DataManager
 from fetch_values import ValueFetcher
 from show_info_in_terminal import Terminal
@@ -22,6 +22,10 @@ def main(break_time, data_file):
         # Calculate ema
         ema_calculator.recalculate(price)
         ema = ema_calculator.get_ema()
+
+        print(ema)
+        print(math.fabs(ema-130.487))
+        assert math.fabs(ema-130.487) < 0.01, "Assertion failed"
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema)
