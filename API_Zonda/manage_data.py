@@ -6,7 +6,7 @@ class DataManager:
 
     def append_data_file(self, price, date):
         with open(self.data_file, 'a', newline= '') as file_csv:
-            writer = csv.writer(file_csv, delimiter = ';')
+            writer = csv.writer(file_csv, delimiter = ',')
             writer.writerow([price, date])
 
     def remove_data_file(self):

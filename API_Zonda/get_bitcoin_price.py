@@ -11,6 +11,7 @@ def main(break_time, data_file):
     # Clear all data from 'bitcoin_price.csv'
     data_manager = DataManager(data_file)
     data_manager.remove_data_file()
+
     ema_calculator = EmaCalculcator(26)
     while True:
         # Fetch current Bitcoin price and unix time from 'zondacrypto' and put it in a 'bitcoin_price.csv' file
