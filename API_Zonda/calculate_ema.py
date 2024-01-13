@@ -10,10 +10,10 @@ class EmaCalculcator:
     
     def calculate_simple_average(self):
         self.ema = float(sum(self.bootstrap_queue)) / len(self.bootstrap_queue)
-    
+
     def calculate_ema(self, price):
         alpha = (2.0 / (1 + float(self.period)))
-        self.ema = (float(price) * alpha) + self.ema * (1.0 - alpha)
+        self.ema = round((float(price) * alpha) + self.ema * (1.0 - alpha), 4)
               
     def recalculate(self, price):
         if len(self.bootstrap_queue) == self.period/2:
