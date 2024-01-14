@@ -1,13 +1,14 @@
 import datetime, logging
 
 class Terminal:
-    def __init__(self, break_time, price, ema_long, ema_short, macd, rsi):
+    def __init__(self, break_time, price, ema_long, ema_short, macd, rsi, adx):
         self.break_time = break_time
         self.price = price
         self.ema_long = str(ema_long)
         self.ema_short = str(ema_short)
         self.macd = macd
         self.rsi = rsi
+        self.adx = adx
 
     def show_info(self):
         logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -18,4 +19,5 @@ class Terminal:
         logging.info(f"Ema for 12 days equals: {self.ema_short}")
         logging.info(f"Macd equals: {self.macd}")
         logging.info(f"Rsi equals: {self.rsi}")
+        logging.info(f"Adx equals: {self.adx}")
         logging.info(f"\nWaiting {str(self.break_time)} seconds for next fetch.\n")
