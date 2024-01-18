@@ -20,11 +20,10 @@ def main(data_file, break_time):
     rsi_calculator = RsiCalculator()
     adx_calculator = AdxCalculator()
     while True:
-        # Fetch current Bitcoin price and unix time from 'zondacrypto' and put it in a 'bitcoin_price.csv' file
+        # Fetch current Bitcoin price and unix time from 'zondacrypto'
         value_fetcher = ValueFetcher()
         price = value_fetcher.get_price()
         date = value_fetcher.get_date()
-        data_manager.append_data_file(price, date)
 
         # Calculate ema
         ema_calculator_long_period.recalculate(price)
@@ -44,6 +43,9 @@ def main(data_file, break_time):
         #Calculate adx
         adx_calculator.launch(price)
         adx = adx_calculator.get_adx()
+
+        # Put all the information in a 'bitcoin_price.csv' file
+        data_manager.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx)

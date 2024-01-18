@@ -4,7 +4,7 @@ class MacdCalculator:
         self.ema_short = ema_short
     
     def calculate_macd(self):
-        self.macd = round(self.ema_short - self.ema_long, 4)
+        self.macd = round(self.ema_short - self.ema_long, 2)
     
     def get_macd(self):
         return self.macd

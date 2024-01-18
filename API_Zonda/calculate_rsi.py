@@ -27,7 +27,7 @@ class RsiCalculator:
 
     def calculate_rsi(self):
         if self.rs != 0:
-            self.rsi = 100 - (100 / (1 + self.rs))
+            self.rsi = round(100 - (100 / (1 + self.rs)))
 
     def recalculate_rsi(self, price):
         if len(self.bootstrap_queue) == 14:

@@ -13,7 +13,7 @@ class EmaCalculcator:
 
     def calculate_ema(self, price):
         alpha = (2.0 / (1 + float(self.period)))
-        self.ema = round((float(price) * alpha) + self.ema * (1.0 - alpha), 4)
+        self.ema = round((float(price) * alpha) + self.ema * (1.0 - alpha), 2)
               
     def recalculate(self, price):
         if len(self.bootstrap_queue) == self.period/2:

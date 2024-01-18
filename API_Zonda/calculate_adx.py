@@ -6,6 +6,7 @@ class AdxCalculator:
     def __init__(self):
         self.adx = 0
         self.count = 1
+        self.positive_di = self.negative_di = 0
         self.current_period_queue = queue.Queue(7)
         self.previous_period_queue = queue.Queue(7)
         self.current_period_queue = deque()
@@ -46,23 +47,25 @@ class AdxCalculator:
         self.tr_value = max(float(self.max_current), float(self.previous_period_queue[6])) - min(float(self.min_current), float(self.previous_period_queue[6]))
     
     def positive_and_negative_di(self):
-        # Positive di
-        self.divide_positive = self.positive_dm / self.tr_value
-        self.ema_positive = EmaCalculcator(7)
-        self.ema_positive.recalculate(self.divide_positive)
-        self.positive_di = self.ema_positive.get_ema()
-        # Negative di
-        self.divide_negative = self.negative_dm / self.tr_value
-        self.ema_negative = EmaCalculcator(7)
-        self.ema_negative.recalculate(self.divide_negative)
-        self.negative_di = self.ema_negative.get_ema()
+        if self.tr_value != 0:
+            # Positive di
+            self.divide_positive = self.positive_dm / self.tr_value
+            self.ema_positive = EmaCalculcator(7)
+            self.ema_positive.recalculate(self.divide_positive)
+            self.positive_di = self.ema_positive.get_ema()
+            # Negative di
+            self.divide_negative = self.negative_dm / self.tr_value
+            self.ema_negative = EmaCalculcator(7)
+            self.ema_negative.recalculate(self.divide_negative)
+            self.negative_di = self.ema_negative.get_ema()
     
     def calculate_adx(self):
-        self.count_di = abs(self.positive_di - self.negative_di) / abs(self.positive_di + self.negative_di)
-        self.ema = EmaCalculcator(7)
-        self.ema.recalculate(self.count_di)
-        self.ema_value = self.ema.get_ema()
-        self.adx = 100 * self.ema_value
+        if self.positive_di + self.negative_di != 0:
+            self.count_di = abs(self.positive_di - self.negative_di) / abs(self.positive_di + self.negative_di)
+            self.ema = EmaCalculcator(7)
+            self.ema.recalculate(self.count_di)
+            self.ema_value = self.ema.get_ema()
+            self.adx = round(100 * self.ema_value, 2)
     
     def launch(self, price):
         if self.count <= 7:
