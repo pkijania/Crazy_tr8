@@ -2,6 +2,7 @@ import pytest, math
 from calculate_ema import EmaCalculcator
 from calculate_macd import MacdCalculator
 from calculate_rsi import RsiCalculator
+from calculate_adx import AdxCalculator
 
 def test_ema():
     prices = [100, 105, 110, 115, 120, 125, 130, 135, 140, 145]
@@ -32,3 +33,11 @@ def test_rsi():
         rsi_test.recalculate_rsi(price)
     rsi = rsi_test.get_rsi()
     assert math.fabs(rsi - 50) < 0.01, "Assertion failed"
+
+def test_adx():
+    prices = [100, 105, 100, 115, 100, 125, 100, 135, 140, 145, 100, 120, 100, 140, 120]
+    adx_test = AdxCalculator()
+    for price in prices:
+        adx_test.launch(price)
+    adx = adx_test.get_adx()
+    assert math.fabs(adx - 100) < 0.01, "Assertion failed"

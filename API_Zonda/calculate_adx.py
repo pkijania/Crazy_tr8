@@ -69,7 +69,7 @@ class AdxCalculator:
             self.previous_period_queue.append(price)
         elif self.count > 7 and self.count <= 14:
             self.current_period_queue.append(price)
-        elif self.count == 15:
+        elif self.count > 14:
             self.max_and_min_price()
             self.positive_and_negative_m()
             self.positive_and_negative_dm()
