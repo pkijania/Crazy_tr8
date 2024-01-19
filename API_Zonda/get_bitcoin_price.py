@@ -6,6 +6,7 @@ from calculate_ema import EmaCalculcator
 from calculate_macd import MacdCalculator
 from calculate_rsi import RsiCalculator
 from calculate_adx import AdxCalculator
+from strategy import Strategy
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
@@ -44,13 +45,18 @@ def main(data_file, break_time):
         adx_calculator.launch(price)
         adx = adx_calculator.get_adx()
 
+        #Based on strategy define next move
+        strategy = Strategy(adx, rsi)
+        strategy.order()
+        buy, sell = strategy.get_order()
+
         # Put all the information in a 'bitcoin_price.csv' file
         data_manager.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
-        terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx)
+        terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
         terminal.show_info()
-
+        
         # Wait 'n' seconds
         time.sleep(int(break_time))
 
