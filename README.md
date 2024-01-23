@@ -1,4 +1,4 @@
-This repository consists of simple aplications written in python
+This repository consists of a trading bot for Bitcoin
 
 ### Get price of bitcoin
 
