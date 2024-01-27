@@ -7,28 +7,44 @@ Code
 
 Main file
 
-[Solution](API_Zonda/get_bitcoin_price.py)
+[Solution](Crazy_tr8/get_bitcoin_price.py)
 
 Fetch values
 
-[Solution](API_Zonda/fetch_values.py)
+[Solution](Crazy_tr8/fetch_values.py)
 
 Manage data
 
-[Solution](API_Zonda/manage_data.py)
+[Solution](Crazy_tr8/manage_data.py)
 
 Show info in terminal
 
-[Solution](API_Zonda/show_info_in_terminal.py)
+[Solution](Crazy_tr8/show_info_in_terminal.py)
 
 Calculate ema
 
-[Solution](API_Zonda/calculate_ema.py)
+[Solution](Crazy_tr8/calculate_ema.py)
+
+Calculate adx
+
+[Solution](Crazy_tr8/calculate_adx.py)
+
+Calculate macd
+
+[Solution](Crazy_tr8/calculate_macd.py)
+
+Calculate rsi
+
+[Solution](Crazy_tr8/calculate_rsi.py)
+
+Strategy file
+
+[Solution](Crazy_tr8/strategy.py)
 
 CSV file
 
-[Solution](API_Zonda/bitcoin_price.csv)
+[Solution](Crazy_tr8/bitcoin_price.csv)
 
 Test file
 
-[Solution](API_Zonda/test.py)
+[Solution](Crazy_tr8/test.py)
