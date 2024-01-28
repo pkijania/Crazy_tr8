@@ -7,6 +7,7 @@ from calculate_macd import MacdCalculator
 from calculate_rsi import RsiCalculator
 from calculate_adx import AdxCalculator
 from strategy import Strategy
+from put_data_into_postres import PostgresDataBase
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
@@ -16,6 +17,7 @@ def main(data_file, break_time):
     data_manager = DataManager(data_file)
     data_manager.remove_data_file()
 
+    postgres = PostgresDataBase(data_file)
     ema_calculator_long_period = EmaCalculcator(26)
     ema_calculator_short_period = EmaCalculcator(12)
     rsi_calculator = RsiCalculator()
@@ -53,6 +55,9 @@ def main(data_file, break_time):
         # Put all the information in a 'bitcoin_price.csv' file
         data_manager.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
 
+        # Transfer all the information from 'bitcoin_price.csv' file to a postgres data base
+        postgres.transfer_data()
+
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
         terminal.show_info()
@@ -61,4 +66,7 @@ def main(data_file, break_time):
         time.sleep(int(break_time))
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as error:
+        print(f"Error!!, program shut down due to {error}")
