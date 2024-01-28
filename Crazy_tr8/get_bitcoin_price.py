@@ -7,7 +7,7 @@ from calculate_macd import MacdCalculator
 from calculate_rsi import RsiCalculator
 from calculate_adx import AdxCalculator
 from strategy import Strategy
-from put_data_into_postres import PostgresDataBase
+from put_data_into_postgres import PostgresDataBase
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
