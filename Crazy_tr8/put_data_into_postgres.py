@@ -11,3 +11,5 @@ class PostgresDataBase:
         values = [price, date, ema_long, ema_short, macd, rsi, adx]
         cur.execute(insert_values, values)
         conn.commit()
+        cur.close()
+        conn.close()
