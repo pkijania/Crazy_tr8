@@ -17,7 +17,7 @@ def main(data_file, break_time):
     data_manager = DataManager(data_file)
     data_manager.remove_data_file()
 
-    postgres = PostgresDataBase(data_file)
+    postgres = PostgresDataBase()
     ema_calculator_long_period = EmaCalculcator(26)
     ema_calculator_short_period = EmaCalculcator(12)
     rsi_calculator = RsiCalculator()
@@ -55,8 +55,8 @@ def main(data_file, break_time):
         # Put all the information in a 'bitcoin_price.csv' file
         data_manager.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
 
-        # Transfer all the information from 'bitcoin_price.csv' file to a postgres data base
-        postgres.transfer_data()
+        # Put all the information in a postgres data base
+        postgres.transfer_data(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
