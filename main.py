@@ -2,12 +2,12 @@ import click, time
 from fetch_values import ValueFetcher
 from show_info_in_terminal import Terminal
 from strategy import Strategy
-from Indicators.calculate_ema import EmaCalculcator
-from Indicators.calculate_macd import MacdCalculator
-from Indicators.calculate_rsi import RsiCalculator
-from Indicators.calculate_adx import AdxCalculator
-from Manage_data.put_data_into_csv import CsvFile
-from Manage_data.put_data_into_postgres import PostgresDataBase
+from indicators.calculate_ema import EmaCalculcator
+from indicators.calculate_macd import MacdCalculator
+from indicators.calculate_rsi import RsiCalculator
+from indicators.calculate_adx import AdxCalculator
+from manage_data.put_data_into_csv import CsvFile
+from manage_data.put_data_into_postgres import PostgresDataBase
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
