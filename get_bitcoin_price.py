@@ -1,21 +1,21 @@
 import click, time
-from manage_data import DataManager
 from fetch_values import ValueFetcher
 from show_info_in_terminal import Terminal
-from calculate_ema import EmaCalculcator
-from calculate_macd import MacdCalculator
-from calculate_rsi import RsiCalculator
-from calculate_adx import AdxCalculator
 from strategy import Strategy
-from put_data_into_postgres import PostgresDataBase
+from Indicators.calculate_ema import EmaCalculcator
+from Indicators.calculate_macd import MacdCalculator
+from Indicators.calculate_rsi import RsiCalculator
+from Indicators.calculate_adx import AdxCalculator
+from Manage_data.put_data_into_csv import CsvFile
+from Manage_data.put_data_into_postgres import PostgresDataBase
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_file, break_time):
     # Clear all data from 'bitcoin_price.csv'
-    data_manager = DataManager(data_file)
-    data_manager.remove_data_file()
+    csv_file = CsvFile(data_file)
+    csv_file.remove_data_file()
 
     postgres = PostgresDataBase()
     ema_calculator_long_period = EmaCalculcator(26)
@@ -53,7 +53,7 @@ def main(data_file, break_time):
         buy, sell = strategy.get_order()
 
         # Put all the information in a 'bitcoin_price.csv' file
-        data_manager.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
+        csv_file.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Put all the information in a postgres data base
         postgres.transfer_data(price, date, ema_long, ema_short, macd, rsi, adx)
