@@ -6,8 +6,8 @@ from indicators.calculate_ema import EmaCalculcator
 from indicators.calculate_macd import MacdCalculator
 from indicators.calculate_rsi import RsiCalculator
 from indicators.calculate_adx import AdxCalculator
-from manage_data.put_data_into_csv import CsvFile
-from manage_data.put_data_into_postgres import PostgresDataBase
+from data.csv import CsvFile
+from data.postgres import PostgresDataBase
 
 @click.command()
 @click.option('--data_file', help = 'Path to datafile.')
