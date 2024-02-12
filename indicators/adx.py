@@ -1,6 +1,6 @@
 import queue
 from collections import deque
-from indicators.calculate_ema import EmaCalculcator
+from indicators.ema import EmaCalculcator
 
 class AdxCalculator:
     def __init__(self):

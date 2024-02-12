@@ -1,8 +1,8 @@
 import pytest, math
-from calculate_ema import EmaCalculcator
-from calculate_macd import MacdCalculator
-from calculate_rsi import RsiCalculator
-from calculate_adx import AdxCalculator
+from indicators.ema import EmaCalculcator
+from indicators.macd import MacdCalculator
+from indicators.rsi import RsiCalculator
+from indicators.adx import AdxCalculator
 
 def test_ema():
     prices = [100, 105, 110, 115, 120, 125, 130, 135, 140, 145]

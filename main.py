@@ -1,11 +1,11 @@
 import click, time
 from fetch_values import ValueFetcher
-from show_info_in_terminal import Terminal
+from terminal import Terminal
 from strategy import Strategy
-from indicators.calculate_ema import EmaCalculcator
-from indicators.calculate_macd import MacdCalculator
-from indicators.calculate_rsi import RsiCalculator
-from indicators.calculate_adx import AdxCalculator
+from indicators.ema import EmaCalculcator
+from indicators.macd import MacdCalculator
+from indicators.rsi import RsiCalculator
+from indicators.adx import AdxCalculator
 from data.csv import CsvFile
 from data.postgres import PostgresDataBase
 
