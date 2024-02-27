@@ -16,7 +16,7 @@ def main(data_file, break_time):
     # Clear all data from 'bitcoin_price.csv'
     csv_file = CsvFile(data_file)
     csv_file.remove_data_file()
-
+    
     postgres = PostgresDataBase()
     ema_calculator_long_period = EmaCalculcator(26)
     ema_calculator_short_period = EmaCalculcator(12)
@@ -52,11 +52,13 @@ def main(data_file, break_time):
         strategy.order()
         buy, sell = strategy.get_order()
 
-        # Put all the information in a 'bitcoin_price.csv' file
-        csv_file.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
-
-        # Put all the information in a postgres data base
-        postgres.transfer_data(price, date, ema_long, ema_short, macd, rsi, adx)
+        # Put all teh information to csv file or postgres data base
+        if data_file.startswith("postgres://"):
+             # Put all the information in a postgres data base
+            postgres.transfer_data(price, date, ema_long, ema_short, macd, rsi, adx)
+        else:
+            # Put all the information in a 'bitcoin_price.csv' file
+            csv_file.append_data_file(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
