@@ -1,6 +1,7 @@
+from data.abstract import DataManager
 import csv
 
-class CsvFile:
+class CsvFile(DataManager):
     def __init__(self, data_file):
         self.data_file = data_file
 

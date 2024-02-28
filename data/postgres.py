@@ -1,6 +1,7 @@
+from data.abstract import DataManager
 import psycopg2
 
-class PostgresDataBase:
+class PostgresDataBase(DataManager):
     def __init__(self):
         print("Transfering data to postgres data base")
 

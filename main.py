@@ -10,11 +10,11 @@ from data.csv import CsvFile
 from data.postgres import PostgresDataBase
 
 @click.command()
-@click.option('--data_file', help = 'Path to datafile.')
+@click.option('--data_source', help = 'Data source for persisting data. Can be either path to csv or connection string to postgres database.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
-def main(data_file, break_time):
+def main(data_source, break_time):
     # Clear all data from 'bitcoin_price.csv'
-    csv_file = CsvFile(data_file)
+    csv_file = CsvFile(data_source)
     csv_file.remove_data_file()
     
     postgres = PostgresDataBase()
@@ -53,7 +53,7 @@ def main(data_file, break_time):
         buy, sell = strategy.get_order()
 
         # Put all teh information to csv file or postgres data base
-        if data_file.startswith("postgres://"):
+        if data_source.startswith("postgres://"):
              # Put all the information in a postgres data base
             postgres.transfer_data(price, date, ema_long, ema_short, macd, rsi, adx)
         else:

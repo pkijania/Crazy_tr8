@@ -3,10 +3,15 @@ from abc import ABC, abstractmethod
 class DataManager(ABC):
 
     @abstractmethod
-    def insert(self, model):
+    def insert(self):
         pass
+
+    @abstractmethod
+    def clean(self):
+	    pass
         
 class Model:
+    @property
     def __init__(self, price, date, ema_long, ema_short, macd, rsi, adx):
         self._price = price
         self._date = date
