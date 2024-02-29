@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class DataManager(ABC):
 
     @abstractmethod
-    def insert(self):
+    def insert(self, model):
         pass
 
     @abstractmethod
