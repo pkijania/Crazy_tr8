@@ -13,11 +13,15 @@ from data.postgres import PostgresDataBase
 @click.option('--data_source', help = 'Data source for persisting data. Can be either path to csv or connection string to postgres database.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_source, break_time):
-    # Clear all data from 'bitcoin_price.csv'
-    csv_file = CsvFile(data_source)
-    csv_file.clean()
+    if data_source.startswith("postgres://"):
+        # Clear all data from 'postgres data base'
+        postgres = PostgresDataBase()
+        postgres.clean()
+    else:
+        # Clear all data from 'bitcoin_price.csv'
+        csv_file = CsvFile(data_source)
+        csv_file.clean()
     
-    postgres = PostgresDataBase()
     ema_calculator_long_period = EmaCalculcator(26)
     ema_calculator_short_period = EmaCalculcator(12)
     rsi_calculator = RsiCalculator()
@@ -54,7 +58,7 @@ def main(data_source, break_time):
 
         # Put all teh information to csv file or postgres data base
         if data_source.startswith("postgres://"):
-             # Put all the information in a postgres data base
+            # Put all the information in a postgres data base
             postgres.insert(price, date, ema_long, ema_short, macd, rsi, adx)
         else:
             # Put all the information in a 'bitcoin_price.csv' file
