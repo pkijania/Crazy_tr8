@@ -56,13 +56,11 @@ def main(data_source, break_time):
         strategy.order()
         buy, sell = strategy.get_order()
 
-        # Put all teh information to csv file or postgres data base
-        if data_source.startswith("postgres://"):
-            # Put all the information in a postgres data base
-            postgres.insert(price, date, ema_long, ema_short, macd, rsi, adx)
-        else:
-            # Put all the information in a 'bitcoin_price.csv' file
-            csv_file.insert(price, date, ema_long, ema_short, macd, rsi, adx)
+        # Put all the information in a postgres data base
+        postgres.insert(price, date, ema_long, ema_short, macd, rsi, adx)
+        
+        # Put all the information in a 'bitcoin_price.csv' file
+        csv_file.insert(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
