@@ -12,12 +12,8 @@ class PostgresDataBase(DataManager):
         values = [price, date, ema_long, ema_short, macd, rsi, adx]
         self.cur.execute(insert_values, values)
         self.conn.commit()
-        self.cur.close()
-        self.conn.close()
     
     def clean(self):
         clean_table = 'DELETE FROM crazy_tr8'
         self.cur.execute(clean_table)
         self.conn.commit()
-        self.cur.close()
-        self.conn.close() 

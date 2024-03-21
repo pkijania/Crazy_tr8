@@ -13,7 +13,7 @@ from data.postgres import PostgresDataBase
 @click.option('--data_source', help = 'Data source for persisting data. Can be either path to csv or connection string to postgres database.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_source, break_time):
-    if data_source.startswith("postgres://"):
+    if data_source.startswith("postgresql://"):
         # Clear all data from 'postgres data base'
         postgres = PostgresDataBase()
         postgres.clean()
@@ -55,12 +55,13 @@ def main(data_source, break_time):
         strategy = Strategy(adx, rsi)
         strategy.order()
         buy, sell = strategy.get_order()
-
-        # Put all the information in a postgres data base
-        postgres.insert(price, date, ema_long, ema_short, macd, rsi, adx)
-        
-        # Put all the information in a 'bitcoin_price.csv' file
-        csv_file.insert(price, date, ema_long, ema_short, macd, rsi, adx)
+            
+        if data_source.startswith("postgresql://"):
+            # Put all the information in a postgres data base
+            postgres.insert(price, date, ema_long, ema_short, macd, rsi, adx)
+        else:
+            # Put all the information in a 'bitcoin_price.csv' file
+            csv_file.insert(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
