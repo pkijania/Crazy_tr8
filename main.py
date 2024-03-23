@@ -14,13 +14,12 @@ from data.postgres import PostgresDataBase
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_source, break_time):
     if data_source.startswith("postgresql://"):
-        # Clear all data from 'postgres data base'
-        postgres = PostgresDataBase()
-        postgres.clean()
+        datamanager = PostgresDataBase()
     else:
-        # Clear all data from 'bitcoin_price.csv'
-        csv_file = CsvFile(data_source)
-        csv_file.clean()
+        datamanager = CsvFile(data_source)
+    
+    # Clean all data from a specified file
+    datamanager.clean()
     
     ema_calculator_long_period = EmaCalculcator(26)
     ema_calculator_short_period = EmaCalculcator(12)
@@ -56,12 +55,8 @@ def main(data_source, break_time):
         strategy.order()
         buy, sell = strategy.get_order()
             
-        if data_source.startswith("postgresql://"):
-            # Put all the information in a postgres data base
-            postgres.insert(price, date, ema_long, ema_short, macd, rsi, adx)
-        else:
-            # Put all the information in a 'bitcoin_price.csv' file
-            csv_file.insert(price, date, ema_long, ema_short, macd, rsi, adx)
+        # Put all the information to a specified file
+        datamanager.insert(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
