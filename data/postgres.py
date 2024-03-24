@@ -10,10 +10,10 @@ class PostgresDataBase(DataManager):
     def insert(self, price, date, ema_long, ema_short, macd, rsi, adx):
         insert_values = 'INSERT INTO crazy_tr8 (price, date, ema_long, ema_short, macd, rsi, adx) VALUES (%s, %s, %s, %s, %s, %s, %s)'
         values = [price, date, ema_long, ema_short, macd, rsi, adx]
-        self.cur.execute(insert_values, values)
-        self.conn.commit()
+        with self.conn.cursor() as cur:
+            self.cur.execute(insert_values, values)
     
     def clean(self):
         clean_table = 'DELETE FROM crazy_tr8'
-        self.cur.execute(clean_table)
-        self.conn.commit()
+        with self.conn.cursor() as cur:
+            self.cur.execute(clean_table)
