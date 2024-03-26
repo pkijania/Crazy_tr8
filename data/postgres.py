@@ -5,19 +5,18 @@ from urllib.parse import urlparse
 class PostgresDataBase(DataManager):
     def __init__(self):
         print("Transfering data to postgres data base")
-        self.conn = psycopg2.connect(host = "localhost", dbname = "postgres", user = "postgres", password = "toster1111", port = 5432)
-        conStr = "localhost://username:password@data_quality:5432"
+        conStr = "schema://user:password@host:port/dbname"
         p = urlparse(conStr)
         pg_connection_dict = {
             'dbname': p.hostname,
             'user': p.username,
             'password': p.password,
             'port': p.port,
-            'host': p.scheme
+            'schema': p.scheme
         }
         print(pg_connection_dict)
-        con = psycopg2.connect(**pg_connection_dict)
-        print(con)
+        self.conn = psycopg2.connect(**pg_connection_dict)
+        print(self.conn)
         self.conn.set_session(autocommit=True)
 
     def insert(self, price, date, ema_long, ema_short, macd, rsi, adx):
