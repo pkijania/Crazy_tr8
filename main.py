@@ -14,7 +14,7 @@ from data.postgres import PostgresDataBase
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_source, break_time):
     if data_source.startswith("postgresql://"):
-        datamanager = PostgresDataBase()
+        datamanager = PostgresDataBase(data_source)
     else:
         datamanager = CsvFile(data_source)
     
