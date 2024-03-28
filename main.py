@@ -13,7 +13,7 @@ from data.postgres import PostgresDataBase
 @click.option('--data_source', help = 'Data source for persisting data. Can be either path to csv or connection string to postgres database.')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_source, break_time):
-    if data_source.startswith("postgresql://"):
+    if data_source.startswith("postgres://"):
         datamanager = PostgresDataBase(data_source)
     else:
         datamanager = CsvFile(data_source)
@@ -46,11 +46,11 @@ def main(data_source, break_time):
         rsi_calculator.recalculate_rsi(price)
         rsi = rsi_calculator.get_rsi()
 
-        #Calculate adx
+        # Calculate adx
         adx_calculator.launch(price)
         adx = adx_calculator.get_adx()
 
-        #Based on strategy define next move
+        # Based on strategy define next move
         strategy = Strategy(adx, rsi)
         strategy.order()
         buy, sell = strategy.get_order()
