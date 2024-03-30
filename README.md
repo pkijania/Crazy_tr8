@@ -9,7 +9,7 @@ This software is for educational purposes only. Do not risk money which you are 
 ```
 psql -u postgres -c "create database crazy_tr8"
 ```
-- Run create_schema.sql file on newly created database or type this command in a terminal:
+- Run "create_schema.sql" file on newly created database or type this command in a terminal:
 ```
 psql -u postgres -d crazy_tr8 -f create_schema.sql
 ```
