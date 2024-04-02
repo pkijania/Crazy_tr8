@@ -1,6 +1,9 @@
+# Module prints useful information in a terminal
+
 import datetime, logging
 
 class Terminal:
+    """Class providing "show_info" method for showing data in a terminal"""
     def __init__(self, break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell):
         self.break_time = break_time
         self.price = price
@@ -13,6 +16,7 @@ class Terminal:
         self.sell = sell
 
     def show_info(self):
+        """Method showing: current price of Bitcoin in USD, current date, indicators and whether to buy or sell crpytocurrency"""
         logging.basicConfig(level=logging.INFO, format='%(message)s')
         date = datetime.datetime.now().strftime('%c')
         logging.info("Price of Bitcoin for: %s is: %s USD", date, self.price)
