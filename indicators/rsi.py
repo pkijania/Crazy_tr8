@@ -47,7 +47,7 @@ class RsiCalculator:
             self.calculate_rsi()
         else:
             self.bootstrap_queue.append(float(price))
-    
+
     def get_rsi(self):
         """Return Rsi"""
         return self.rsi
