@@ -7,17 +7,18 @@ class DataManager(ABC):
 
     @abstractmethod
     def insert(self, model):
-        """Method inserting data from a file"""
+        """Insert data from a file"""
         pass
 
     @abstractmethod
     def clean(self):
-        """Method erasing data from a file"""
+        """Erase data from a file"""
         pass
 
 class Model:
     @property
     def __init__(self, price, date, ema_long, ema_short, macd, rsi, adx):
+        """Initialize class variables"""
         self.price = price
         self.date = date
         self.ema_long = ema_long

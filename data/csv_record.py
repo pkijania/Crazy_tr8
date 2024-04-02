@@ -6,16 +6,17 @@ import csv
 class CsvFile(DataManager):
     """Class providing "insert" and "clean" methods for managing data in a "csv_record.py" file"""
     def __init__(self, data_file):
+        """Initialize class variable"""
         self.data_file = data_file
 
     def insert(self, price, date, ema_long, ema_short, macd, rsi, adx):
-        """Method inserting data into a "csv_record.py" file"""
+        """Insert data into a "csv_record.py" file"""
         with open(self.data_file, 'a', newline= '') as file_csv:
             writer = csv.writer(file_csv, delimiter = ',')
             writer.writerow([price, date, ema_long, ema_short, macd, rsi, adx])
 
     def clean(self):
-        """Method erasing data into a "csv_record.py" file"""
+        """Erase data into a "csv_record.py" file"""
         clear = open(self.data_file, 'w')
         clear.truncate()
         clear.close()
