@@ -4,7 +4,7 @@ class ValueFetcher:
     def __init__(self):
         get_request = requests.get('https://api.zondacrypto.exchange/rest/trading/ticker/BTC-PLN')
         self.get_request = get_request
-        
+
     def get_price(self):
         try:
             return self.get_request.json()['ticker']['rate']

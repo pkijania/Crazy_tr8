@@ -7,14 +7,14 @@ class EmaCalculcator:
         self.period = period
         self.bootstrap_queue = queue.Queue(self.period/2)
         self.bootstrap_queue = deque()
-    
+
     def calculate_simple_average(self):
         self.ema = float(sum(self.bootstrap_queue)) / len(self.bootstrap_queue)
 
     def calculate_ema(self, price):
         alpha = (2.0 / (1 + float(self.period)))
         self.ema = round((float(price) * alpha) + self.ema * (1.0 - alpha), 2)
-              
+     
     def recalculate(self, price):
         if len(self.bootstrap_queue) == self.period/2:
             self.calculate_ema(price)

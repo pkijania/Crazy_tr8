@@ -17,10 +17,10 @@ def main(data_source, break_time):
         datamanager = PostgresDataBase(data_source)
     else:
         datamanager = CsvFile(data_source)
-    
+
     # Clean all data from a specified file
     datamanager.clean()
-    
+
     ema_calculator_long_period = EmaCalculcator(26)
     ema_calculator_short_period = EmaCalculcator(12)
     rsi_calculator = RsiCalculator()
@@ -54,14 +54,14 @@ def main(data_source, break_time):
         strategy = Strategy(adx, rsi)
         strategy.order()
         buy, sell = strategy.get_order()
-            
+  
         # Put all the information to a specified file
         datamanager.insert(price, date, ema_long, ema_short, macd, rsi, adx)
 
         # Show all the information in a terminal
         terminal = Terminal(break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell)
         terminal.show_info()
-        
+
         # Wait 'n' seconds
         time.sleep(int(break_time))
 

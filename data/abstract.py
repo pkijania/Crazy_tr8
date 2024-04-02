@@ -8,23 +8,43 @@ class DataManager(ABC):
 
     @abstractmethod
     def clean(self):
-	    pass
-        
+        pass
+
 class Model:
     @property
     def __init__(self, price, date, ema_long, ema_short, macd, rsi, adx):
-        self._price = price
-        self._date = date
-        self._ema_long = ema_long
-        self._ema_short = ema_short
-        self._macd = macd
-        self._rsi = rsi
-        self._adx = adx
+        self.price = price
+        self.date = date
+        self.ema_long = ema_long
+        self.ema_short = ema_short
+        self.macd = macd
+        self.rsi = rsi
+        self.adx = adx
 
     @property
     def price(self):
-        return self._price
+        return self.price
 
     @property
     def date(self):
-        return self._date
+        return self.date
+
+    @property
+    def ema_long(self):
+        return self.ema_long
+
+    @property
+    def ema_short(self):
+        return self.ema_short
+
+    @property
+    def macd(self):
+        return self.macd
+
+    @property
+    def rsi(self):
+        return self.rsi
+
+    @property
+    def adx(self):
+        return self.adx

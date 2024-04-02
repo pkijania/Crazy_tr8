@@ -13,6 +13,6 @@ class Strategy:
             self.buy = True
         elif self.adx > self.adx_threshold and self.rsi > self.rsi_upper_threshold:
             self.sell = True
-    
+
     def get_order(self):
         return self.buy, self.sell

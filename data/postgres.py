@@ -21,7 +21,7 @@ class PostgresDataBase(DataManager):
         values = [price, date, ema_long, ema_short, macd, rsi, adx]
         with self.conn.cursor() as cur:
             cur.execute(insert_values, values)
-    
+
     def clean(self):
         clean_table = 'DELETE FROM history'
         with self.conn.cursor() as cur:
