@@ -6,8 +6,8 @@ from indicators.ema import EmaCalculcator
 from indicators.macd import MacdCalculator
 from indicators.rsi import RsiCalculator
 from indicators.adx import AdxCalculator
-from data.csv import CsvFile
-from data.postgres import PostgresDataBase
+from data.csv_record import CsvFile
+from data.postgres_record import PostgresDataBase
 
 @click.command()
 @click.option('--data_source', help = 'Data source for persisting data. Can be either path to csv or connection string to postgres database.')
