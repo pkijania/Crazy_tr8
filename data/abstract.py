@@ -1,4 +1,4 @@
-# Abstract module representing a manager of data that is erased from or insterted into a file 
+# Abstract module representing a manager of data that is erased from or insterted into a file
 
 from abc import ABC, abstractmethod
 
@@ -8,14 +8,14 @@ class DataManager(ABC):
     @abstractmethod
     def insert(self, model):
         """Insert data from a file"""
-        pass
 
     @abstractmethod
     def clean(self):
         """Erase data from a file"""
-        pass
 
 class Model:
+    """Class contains "price", "date", "ema_long", "ema_short", "macd", "rsi" 
+    and "adx" get methods"""
     @property
     def __init__(self, price, date, ema_long, ema_short, macd, rsi, adx):
         """Initialize class variables"""

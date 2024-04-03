@@ -4,7 +4,8 @@ import datetime
 import logging
 
 class Terminal:
-    """Class providing "time_and_date", "indicators" and "decision" methods for showing data in a terminal"""
+    """Class providing "time_and_date", "indicators" and "decision" methods for showing
+    data in a terminal"""
     def __init__(self, break_time, price, ema_long, ema_short, macd, rsi, adx, buy, sell):
         """Initialize class variables"""
         self.break_time = break_time
@@ -22,7 +23,7 @@ class Terminal:
         logging.basicConfig(level=logging.INFO, format='%(message)s')
         date = datetime.datetime.now().strftime('%c')
         logging.info("Price of Bitcoin for: %s is: %s USD", date, self.price)
-    
+
     def indicators(self):
         """Print all indicators"""
         logging.info("\nIndicators:")
@@ -31,7 +32,7 @@ class Terminal:
         logging.info("Macd equals: %s", self.macd)
         logging.info("Rsi equals: %s", self.rsi)
         logging.info("Adx equals: %s", self.adx)
-    
+
     def decision(self):
         """Print a decision whether to buy or sell crpytocurrency"""
         logging.info("Buy") if self.buy else logging.info("Don't buy")

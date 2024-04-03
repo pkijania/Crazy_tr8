@@ -7,10 +7,10 @@ from urllib.parse import urlparse
 class PostgresDataBase(DataManager):
     """Class providing "insert" and "clean" methods that 
     deletes or adds data to a postgres data base"""
-    def __init__(self, conStr):
+    def __init__(self, con_str):
         """Get a connection attribute and connect to a data base"""
         print("Transfering data to postgres data base")
-        p = urlparse(conStr)
+        p = urlparse(con_str)
         pg_connection_dict = {
             'dbname': p.path[1:],
             'user': p.username,
