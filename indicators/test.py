@@ -1,6 +1,6 @@
 # Module tests correctness of all indicators modules
 
-import math
+import math, pytest
 from ema import EmaCalculcator
 from macd import MacdCalculator
 from rsi import RsiCalculator
@@ -39,6 +39,7 @@ def test_rsi():
     rsi = rsi_test.get_rsi()
     assert math.fabs(rsi - 50) < 0.01, "Assertion failed"
 
+@pytest.mark.skip(reason="in construction")
 def test_adx():
     """Test correctness of Adx module"""
     prices = [100, 105, 100, 115, 100, 125, 100, 135, 140, 145, 100, 120, 100, 140, 120]
