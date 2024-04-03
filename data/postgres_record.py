@@ -1,8 +1,8 @@
 """Module deletes old data and adds new data to a postgres data base"""
 
+from urllib.parse import urlparse
 import psycopg2
 from data.abstract import DataManager
-from urllib.parse import urlparse
 
 class PostgresDataBase(DataManager):
     """Class providing "insert" and "clean" methods that 

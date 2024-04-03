@@ -56,7 +56,9 @@ class AdxCalculator:
 
     def tr(self):
         """Count tr value"""
-        self.tr_value = max(float(self.max_current), float(self.previous_period_queue[6])) - min(float(self.min_current), float(self.previous_period_queue[6]))
+        min_value = min(float(self.min_current), float(self.previous_period_queue[6]))
+        max_value = max(float(self.max_current), float(self.previous_period_queue[6]))
+        self.tr_value = max_value - min_value
 
     def positive_and_negative_di(self):
         """Count negative and positive di"""
