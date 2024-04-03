@@ -1,4 +1,4 @@
-# Module counts Ema indicator using mathematical formula
+"""Module counts Ema indicator using mathematical formula"""
 
 import queue
 from collections import deque

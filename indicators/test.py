@@ -1,6 +1,7 @@
-# Module tests correctness of all indicators modules
+"""Module tests correctness of all indicators modules"""
 
-import math, pytest
+import math
+import pytest
 from .ema import EmaCalculcator
 from .macd import MacdCalculator
 from .rsi import RsiCalculator

@@ -1,4 +1,4 @@
-# Module counts Rsi indicator using mathematical formula
+"""Module counts Rsi indicator using mathematical formula"""
 
 import queue
 from collections import deque

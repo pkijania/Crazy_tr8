@@ -1,4 +1,4 @@
-# Module deletes old data and adds new data to a csv_record.py file
+"""Module deletes old data and adds new data to a csv_record.py file"""
 
 from data.abstract import DataManager
 import csv
@@ -9,11 +9,12 @@ class CsvFile(DataManager):
         """Initialize class variable"""
         self.data_file = data_file
 
-    def insert(self, price, date, ema_long, ema_short, macd, rsi, adx):
+    def insert(self, model):
         """Insert data into a "csv_record.py" file"""
         with open(self.data_file, 'a', newline= '') as file_csv:
             writer = csv.writer(file_csv, delimiter = ',')
-            writer.writerow([price, date, ema_long, ema_short, macd, rsi, adx])
+            writer.writerow([model.price, model.date, model.ema_long,
+                model.ema_short, model.macd, model.rsi, model.adx])
 
     def clean(self):
         """Erase data into a "csv_record.py" file"""

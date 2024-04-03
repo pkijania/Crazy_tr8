@@ -1,4 +1,4 @@
-# Module prints all the information regarding Bitcoin trading in a terminal
+"""Module prints all the information regarding Bitcoin trading in a terminal"""
 
 import datetime
 import logging
@@ -35,6 +35,12 @@ class Terminal:
 
     def decision(self):
         """Print a decision whether to buy or sell crpytocurrency"""
-        logging.info("Buy") if self.buy else logging.info("Don't buy")
-        logging.info("Sell") if self.sell else logging.info("Don't sell")
+        if self.buy:
+            logging.info("Buy")
+        else:
+            logging.info("Don't buy")
+        if self.sell:
+            logging.info("Sell")
+        else:
+            logging.info("Don't sell")
         logging.info("\nWaiting %s seconds for next fetch.\n", str(self.break_time))

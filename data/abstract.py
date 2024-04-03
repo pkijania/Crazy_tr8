@@ -1,4 +1,4 @@
-# Abstract module representing a manager of data that is erased from or insterted into a file
+"""Abstract module representing a manager of data that is erased from or insterted into a file"""
 
 from abc import ABC, abstractmethod
 

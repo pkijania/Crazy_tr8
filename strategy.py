@@ -1,4 +1,4 @@
-# Module returns a decision whether to buy or sell cryptocurrency
+"""Module returns a decision whether to buy or sell cryptocurrency"""
 
 class Strategy:
     """Class providing "order" and "get_order" methods for decision making"""

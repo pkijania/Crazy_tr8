@@ -1,7 +1,7 @@
-# Module deletes old data and adds new data to a postgres data base
+"""Module deletes old data and adds new data to a postgres data base"""
 
-from data.abstract import DataManager
 import psycopg2
+from data.abstract import DataManager
 from urllib.parse import urlparse
 
 class PostgresDataBase(DataManager):
@@ -21,11 +21,12 @@ class PostgresDataBase(DataManager):
         self.conn = psycopg2.connect(**pg_connection_dict)
         self.conn.set_session(autocommit=True)
 
-    def insert(self, price, date, ema_long, ema_short, macd, rsi, adx):
+    def insert(self, model):
         """Insert data into a postgres data base"""
-        insert_values = '''INSERT INTO history (price, date, ema_long, ema_short, macd, rsi, adx) 
+        insert_values = '''INSERT INTO history (price, date, ema_long, ema_short, macd, rsi, adx)
         VALUES (%s, %s, %s, %s, %s, %s, %s)'''
-        values = [price, date, ema_long, ema_short, macd, rsi, adx]
+        values = [model.price, model.date, model.ema_long,
+            model.ema_short, model.macd, model.rsi, model.adx]
         with self.conn.cursor() as cur:
             cur.execute(insert_values, values)
 

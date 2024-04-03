@@ -1,4 +1,5 @@
-# Module gets information from Zondacrypto about current price of Bitcoin and current date using API requests
+"""Module gets information from Zondacrypto about current price of Bitcoin and current date using
+API requests"""
 
 import requests
 

@@ -1,4 +1,4 @@
-# Module counts Adx indicator using mathematical formula
+"""Module counts Adx indicator using mathematical formula"""
 
 import queue
 from collections import deque
