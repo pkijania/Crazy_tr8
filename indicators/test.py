@@ -1,10 +1,10 @@
 # Module tests correctness of all indicators modules
 
 import math, pytest
-from ema import EmaCalculcator
-from macd import MacdCalculator
-from rsi import RsiCalculator
-from adx import AdxCalculator
+from .ema import EmaCalculcator
+from .macd import MacdCalculator
+from .rsi import RsiCalculator
+from .adx import AdxCalculator
 
 def test_ema():
     """Test correctness of Ema module"""
