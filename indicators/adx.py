@@ -10,15 +10,13 @@ class AdxCalculator:
     "launch", and "get_adx" methods for counting Adx"""
     def __init__(self):
         """Initialize class variables, create queue and transform it into a list"""
+        self.adx = 0
         self.count = 1
-        self.ema = self.adx = self.tr_value = self.count_di = self.ema_value = 0
-        self.ema_negative = self.ema_positive = 0
-        self.max_previous = self.max_current = 0
-        self.min_previous = self.min_current = 0
-        self.positive_di = self.positive_dm = self.positive_m = self.divide_positive = 0
-        self.negative_di = self.negative_dm = self.negative_m = self.divide_negative = 0
-        self.current_period_queue = self.previous_period_queue = queue.Queue(7)
-        self.current_period_queue = self.previous_period_queue = deque()
+        self.positive_di = self.negative_di = 0
+        self.current_period_queue = queue.Queue(7)
+        self.previous_period_queue = queue.Queue(7)
+        self.current_period_queue = deque()
+        self.previous_period_queue = deque()
 
     def max_and_min_price(self):
         """Count max and min value in a list"""
