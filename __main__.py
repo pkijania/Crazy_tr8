@@ -16,8 +16,7 @@ from data.csv_record import CsvFile
 from data.postgres_record import PostgresDataBase
 
 @click.command()
-@click.option('--data_source',
-    help = '''Data source for persisting data.
+@click.option('--data_source', help = '''Data source for persisting data.
         Can be either path to csv or connection string to postgres database.''')
 @click.option('--break_time', default = 5, help = 'Time of a break between prices.')
 def main(data_source, break_time):
