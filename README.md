@@ -1,6 +1,5 @@
 ![Alt text](logo.png?raw=true "Title")
 
-# Crazy tr8
 Crazy tr8 is a free and open source crypto-trading bot written in Pyhton. It is designed to support Zondacrypto exchange. It is still under development.
 
 ## Disclaimer
