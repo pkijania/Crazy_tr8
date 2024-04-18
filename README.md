@@ -1,4 +1,6 @@
-# Trading program
+![Alt text](logo.png?raw=true "Title")
+
+# Crazy tr8
 Crazy tr8 is a free and open source crypto-trading bot written in Pyhton. It is designed to support Zondacrypto exchange. It is still under development.
 
 ## Disclaimer
@@ -15,5 +17,5 @@ psql -u postgres -d crazy_tr8 -f create_schema.sql
 ```
 - Start the program with your database details: 
 ```
---datasource schema://user:password@host:1234/dbname
+python3 Crazy_tr8 --datasource schema://user:password@host:1234/dbname
 ```
