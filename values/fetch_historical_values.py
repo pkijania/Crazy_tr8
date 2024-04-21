@@ -3,7 +3,7 @@ import csv
 class HistoricalValueFetcher:
     def __init__(self):
         list_of_values = []
-        path = "D:/Programy/Github/Crazy_tr8/historical_data/XBTUSD_Q3.csv"
+        path = "Github/Crazy_tr8/historical_data/XBTUSD_Q3.csv"
         with open(path, 'r') as file_csv:
             csv_reader = csv.reader(file_csv)
             for self.row in csv_reader:
