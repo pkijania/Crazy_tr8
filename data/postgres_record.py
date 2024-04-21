@@ -21,11 +21,11 @@ class PostgresDataBase(DataManager):
         self.conn = psycopg2.connect(**pg_connection_dict)
         self.conn.set_session(autocommit=True)
 
-    def insert(self, price, date, ema_long, ema_short, macd, rsi, adx):
+    def insert(self, id_value, price, date, ema_long, ema_short, macd, rsi, adx):
         """Insert data into a postgres data base"""
-        insert_values = '''INSERT INTO history (price, date, ema_long, ema_short, macd, rsi, adx)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)'''
-        values = [price, date, ema_long, ema_short, macd, rsi, adx]
+        insert_values = '''INSERT INTO history (id, price, date, ema_long, ema_short, macd, rsi, adx)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+        values = [id_value, price, date, ema_long, ema_short, macd, rsi, adx]
         with self.conn.cursor() as cur:
             cur.execute(insert_values, values)
 

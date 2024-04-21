@@ -17,8 +17,9 @@ class Model:
     """Class contains "price", "date", "ema_long", "ema_short", "macd", "rsi" 
     and "adx" get methods"""
     @property
-    def __init__(self, price, date, ema_long, ema_short, macd, rsi, adx):
+    def __init__(self, id_value, price, date, ema_long, ema_short, macd, rsi, adx):
         """Initialize class variables"""
+        self.id_value = id_value
         self.price = price
         self.date = date
         self.ema_long = ema_long
@@ -26,6 +27,11 @@ class Model:
         self.macd = macd
         self.rsi = rsi
         self.adx = adx
+
+    @property
+    def id_value(self):
+        """Get method for id value attribute"""
+        return self.id_value
 
     @property
     def price(self):
