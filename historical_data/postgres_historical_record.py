@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 import psycopg2
 from data.abstract import DataManager
 
-class PostgresDataBase(DataManager):
+class PostgresHitsoricalDataBase(DataManager):
     """Class providing "insert" and "clean" methods that 
     deletes or adds data to a postgres data base"""
     def __init__(self, con_str):
@@ -23,7 +23,7 @@ class PostgresDataBase(DataManager):
 
     def insert(self, id_value, price, date, ema_long, ema_short, macd, rsi, adx):
         """Insert data into a postgres data base"""
-        insert_values = '''INSERT INTO history (id, price, date, ema_long, ema_short, macd, rsi, adx)
+        insert_values = '''INSERT INTO test (id, price, date, ema_long, ema_short, macd, rsi, adx)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
         values = [id_value, price, date, ema_long, ema_short, macd, rsi, adx]
         with self.conn.cursor() as cur:
@@ -31,6 +31,6 @@ class PostgresDataBase(DataManager):
 
     def clean(self):
         """Erase data into a postgres data base"""
-        clean_table = 'DELETE FROM history'
+        clean_table = 'DELETE FROM test'
         with self.conn.cursor() as cur:
             cur.execute(clean_table)

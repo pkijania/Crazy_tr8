@@ -1,8 +1,8 @@
--- Table: history
+-- Table: test
 
--- DROP TABLE IF EXISTS history;
+-- DROP TABLE IF EXISTS test;
 
-CREATE TABLE IF NOT EXISTS history
+CREATE TABLE IF NOT EXISTS test
 (
     id character varying(50) primary key,
 	price character varying(50),
