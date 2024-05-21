@@ -43,4 +43,5 @@ class Terminal:
             logging.info("Sell")
         else:
             logging.info("Don't sell")
-        logging.info("\nWaiting %s seconds for next fetch.\n", str(self.break_time))
+        if self.break_time != 0:
+            logging.info("\nWaiting %s seconds for next fetch.\n", str(self.break_time))
